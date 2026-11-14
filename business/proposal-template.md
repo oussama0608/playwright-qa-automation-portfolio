@@ -13,7 +13,7 @@ You mentioned **{their pain: e.g. "regressions every release on the checkout flo
 2. Run them in **GitHub Actions** on every pull request{, plus a nightly run}.
 3. Deliver an **HTML report** with screenshots, videos and traces, plus clear bug reports for anything I find.
 
-**Why me:** I'm a full-stack developer specialised in Playwright + TypeScript. Here is a working sample with 24 tests, CI and a sample bug report: **{portfolio link}**. My suites are verified with repeated runs before handover. No flaky tests and no fixed sleeps.
+**Why me:** I'm a full-stack developer specialised in Playwright + TypeScript. Here is a working sample with 24 tests, CI and a sample bug report: https://github.com/oussama0608/playwright-qa-automation-portfolio. My suites are verified with repeated runs before handover. No flaky tests and no fixed sleeps.
 
 **Estimate:** **{X} hours / ${price} fixed**, delivered in **{days}** days.
 I'll start with a short test plan for your approval, so the scope is clear from day one.

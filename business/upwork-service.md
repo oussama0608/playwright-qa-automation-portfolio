@@ -20,7 +20,7 @@ I build reliable automated tests for web applications, so your team can ship wit
 - I separate *application bugs* from *test problems*, so you never chase false alarms.
 - AI-assisted workflow: faster delivery, with every test reviewed and executed by me.
 
-**Portfolio:** working sample repository with 24 tests, CI pipeline and sample reports → `https://github.com/<your-user>/playwright-qa-automation-portfolio`
+**Portfolio:** working sample repository with 24 tests, CI pipeline and sample reports → `https://github.com/oussama0608/playwright-qa-automation-portfolio`
 
 **Typical projects:** smoke suites for MVPs, regression suites before a launch, migrating Selenium/Cypress to Playwright, adding tests to CI, fixing flaky tests.
 

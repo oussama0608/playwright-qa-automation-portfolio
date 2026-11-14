@@ -59,7 +59,7 @@ A production-style end-to-end and API test automation framework built with **Pla
 **Requirements:** Node.js ≥ 20.12 and Git. Works on Windows, macOS and Linux.
 
 ```bash
-git clone https://github.com/<your-user>/playwright-qa-automation-portfolio.git
+git clone https://github.com/oussama0608/playwright-qa-automation-portfolio.git
 cd playwright-qa-automation-portfolio
 npm ci
 npx playwright install chromium
