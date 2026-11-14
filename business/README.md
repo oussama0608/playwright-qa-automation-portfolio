@@ -8,6 +8,7 @@
 | [proposal-template.md](proposal-template.md) | Short, personalised proposals that get replies |
 | [final-report-template.md](final-report-template.md) | Client delivery report (see `docs/sample-test-report.md` for a filled example) |
 | [project-acceptance-checklist.md](project-acceptance-checklist.md) | Go/no-go before accepting a job (legal, technical, commercial) |
+| [utest-guide.md](utest-guide.md) | uTest sign-up, profile texts, Academy order, bug template for cycles |
 | [estimator.mjs](estimator.mjs) | `npm run estimate -- --help`: deterministic hours, quote and profitability |
 
 ## uTest (crowdtesting)
