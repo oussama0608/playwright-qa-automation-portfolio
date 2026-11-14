@@ -1,0 +1,79 @@
+name: E2E Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: '0 6 * * 1-5' # weekdays 06:00 UTC – catches regressions / environment drift
+  workflow_dispatch:
+    inputs:
+      project:
+        description: 'Playwright project (chromium | firefox | webkit | mobile-chrome | all)'
+        default: chromium
+        required: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: e2e-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CI: 'true'
+      # Configure these as repository secrets (Settings → Secrets → Actions).
+      # Fallbacks are the public demo credentials of the bundled local app.
+      DEMO_USER: ${{ secrets.DEMO_USER || 'qa_user' }}
+      DEMO_PASS: ${{ secrets.DEMO_PASS || 'ChangeMe123!' }}
+      PROJECT: ${{ github.event.inputs.project || 'chromium' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-${{ env.PROJECT }}
+
+      - name: Install Playwright browsers
+        run: |
+          if [ "$PROJECT" = "all" ]; then npx playwright install --with-deps
+          elif [ "$PROJECT" = "mobile-chrome" ]; then npx playwright install --with-deps chromium
+          else npx playwright install --with-deps "$PROJECT"; fi
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Run Playwright tests
+        run: |
+          if [ "$PROJECT" = "all" ]; then npx playwright test
+          else npx playwright test --project="$PROJECT"; fi
+
+      - name: Upload HTML report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-${{ env.PROJECT }}
+          path: playwright-report/
+          retention-days: 14
+
+      - name: Upload failure artifacts (screenshots, videos, traces)
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-${{ env.PROJECT }}
+          path: test-results/
+          retention-days: 7

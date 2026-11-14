@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About · QA Demo Store</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <span class="brand">QA Demo Store</span>
+    <nav aria-label="Main">
+      <a href="/products">Products</a>
+      <a href="/about" aria-current="page">About</a>
+    </nav>
+    <span class="user">Signed in as <strong data-testid="current-user"></strong></span>
+    <button type="button" id="logout" class="link">Log out</button>
+  </header>
+  <main class="container">
+    <h1>About this app</h1>
+    <p>QA Demo Store is a small inventory manager built as the application under test for a Playwright automation portfolio.</p>
+    <ul>
+      <li>Session-based authentication</li>
+      <li>Product search and category filters</li>
+      <li>Create, edit and delete products with validation</li>
+    </ul>
+    <p class="muted" data-testid="app-version">Version 1.0.0</p>
+  </main>
+  <script src="/assets/common.js"></script>
+</body>
+</html>

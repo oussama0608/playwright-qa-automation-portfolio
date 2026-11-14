@@ -1,0 +1,27 @@
+{
+  "name": "playwright-qa-automation-portfolio",
+  "version": "1.0.0",
+  "description": "End-to-end and API test automation portfolio built with Playwright + TypeScript against a local demo inventory app.",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "start": "node app/server.js",
+    "test": "playwright test --project=chromium",
+    "test:headed": "playwright test --project=chromium --headed",
+    "test:ui": "playwright test --ui",
+    "test:smoke": "playwright test --project=chromium --grep @smoke",
+    "test:all-browsers": "playwright test",
+    "report": "playwright show-report",
+    "typecheck": "tsc --noEmit",
+    "screenshots": "node scripts/capture-screenshots.mjs",
+    "estimate": "node business/estimator.mjs"
+  },
+  "engines": {
+    "node": ">=20.12"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.1",
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2"
+  }
+}

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign in · QA Demo Store</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body class="centered">
+  <main class="card login-card">
+    <h1>QA Demo Store</h1>
+    <p class="muted">Sign in to manage the product inventory.</p>
+    <div id="login-error" class="alert" role="alert" data-testid="login-error" hidden></div>
+    <form id="login-form" novalidate>
+      <label for="username">Username</label>
+      <input id="username" name="username" autocomplete="username" aria-describedby="error-username">
+      <p class="field-error" id="error-username" data-testid="error-username"></p>
+
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" aria-describedby="error-password">
+      <p class="field-error" id="error-password" data-testid="error-password"></p>
+
+      <button type="submit" class="primary">Sign in</button>
+    </form>
+  </main>
+  <script src="/assets/login.js"></script>
+</body>
+</html>

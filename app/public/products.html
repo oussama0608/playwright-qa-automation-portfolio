@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Products · QA Demo Store</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <span class="brand">QA Demo Store</span>
+    <nav aria-label="Main">
+      <a href="/products" aria-current="page">Products</a>
+      <a href="/about">About</a>
+    </nav>
+    <span class="user">Signed in as <strong data-testid="current-user"></strong></span>
+    <button type="button" id="logout" class="link">Log out</button>
+  </header>
+
+  <main class="container">
+    <h1>Products</h1>
+
+    <div class="toolbar">
+      <input type="search" id="search" placeholder="Search by name…" aria-label="Search products">
+      <select id="category-filter" aria-label="Filter by category">
+        <option value="All">All categories</option>
+      </select>
+      <button type="button" id="add-product" class="primary">Add product</button>
+    </div>
+
+    <div id="error-banner" class="alert" role="alert" data-testid="error-banner" hidden>
+      <span id="error-message"></span>
+      <button type="button" id="retry">Retry</button>
+    </div>
+    <div id="toast" class="toast" role="status" data-testid="toast" hidden></div>
+
+    <p class="muted" data-testid="result-count" id="result-count"></p>
+    <table aria-label="Products">
+      <thead>
+        <tr><th>Name</th><th>Category</th><th>Price</th><th>Stock</th><th><span class="sr-only">Actions</span></th></tr>
+      </thead>
+      <tbody id="product-rows"></tbody>
+    </table>
+    <p id="empty-state" class="empty" data-testid="empty-state" hidden>No products match your search.</p>
+  </main>
+
+  <dialog id="product-dialog" aria-labelledby="dialog-title">
+    <form id="product-form" method="dialog" novalidate>
+      <h2 id="dialog-title">Add product</h2>
+      <div id="form-error" class="alert" role="alert" data-testid="form-error" hidden></div>
+
+      <label for="name">Name</label>
+      <input id="name" name="name" maxlength="80" aria-describedby="error-name">
+      <p class="field-error" id="error-name" data-testid="error-name"></p>
+
+      <label for="category">Category</label>
+      <select id="category" name="category" aria-describedby="error-category">
+        <option value="">Select…</option>
+      </select>
+      <p class="field-error" id="error-category" data-testid="error-category"></p>
+
+      <label for="price">Price (USD)</label>
+      <input id="price" name="price" inputmode="decimal" aria-describedby="error-price">
+      <p class="field-error" id="error-price" data-testid="error-price"></p>
+
+      <label for="stock">Stock</label>
+      <input id="stock" name="stock" inputmode="numeric" aria-describedby="error-stock">
+      <p class="field-error" id="error-stock" data-testid="error-stock"></p>
+
+      <div class="actions">
+        <button type="button" id="cancel-product">Cancel</button>
+        <button type="submit" class="primary" id="save-product">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="confirm-dialog" aria-labelledby="confirm-title">
+    <h2 id="confirm-title">Delete product</h2>
+    <p id="confirm-text"></p>
+    <div class="actions">
+      <button type="button" id="confirm-cancel">Cancel</button>
+      <button type="button" id="confirm-delete" class="danger">Delete</button>
+    </div>
+  </dialog>
+
+  <script src="/assets/common.js"></script>
+  <script src="/assets/products.js"></script>
+</body>
+</html>
