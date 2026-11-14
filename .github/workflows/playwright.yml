@@ -32,18 +32,18 @@ jobs:
       DEMO_PASS: ${{ secrets.DEMO_PASS || 'ChangeMe123!' }}
       PROJECT: ${{ github.event.inputs.project || 'chromium' }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
-          node-version: 22
+          node-version: 24
           cache: npm
 
       - name: Install dependencies
         run: npm ci
 
       - name: Cache Playwright browsers
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/.cache/ms-playwright
           key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-${{ env.PROJECT }}
@@ -64,7 +64,7 @@ jobs:
 
       - name: Upload HTML report
         if: ${{ !cancelled() }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: playwright-report-${{ env.PROJECT }}
           path: playwright-report/
@@ -72,7 +72,7 @@ jobs:
 
       - name: Upload failure artifacts (screenshots, videos, traces)
         if: ${{ failure() }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: test-results-${{ env.PROJECT }}
           path: test-results/
